@@ -1,13 +1,24 @@
 import java.awt.EventQueue;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
+import javax.swing.JTextArea;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 public class hngMan1 extends JFrame {
-
+	
+	private static int level = 1;
+	
 	private JPanel contentPane;
+	
+	private JTextField guessField;
 
 	/**
 	 * Launch the application.
@@ -37,6 +48,28 @@ public class hngMan1 extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		JLabel lblArea = new JLabel("");
+		lblArea.setBounds(98, 66, 336, 207);
+		contentPane.add(lblArea);
+		
+		JButton btnNewButton = new JButton("New button");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				level++;
+				String imagesPath = "images/";
+				String img = "h" + level;
+				ImageIcon a1 = new ImageIcon(imagesPath + img + ".png");
+				lblArea.setIcon(a1);
+			}
+		});
+		btnNewButton.setBounds(512, 126, 117, 29);
+		contentPane.add(btnNewButton);
+		
+		guessField = new JTextField();
+		guessField.setBounds(134, 358, 240, 29);
+		contentPane.add(guessField);
+		guessField.setColumns(10);
+		
+		
 	}
-
 }
