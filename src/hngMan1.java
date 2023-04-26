@@ -156,6 +156,13 @@ public class hngMan1 extends JFrame {
 		contentPane.add(eBtn);
 		
 		fBtn = new JButton("F");
+		fBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Btn(fBtn);
+				ImageIcon a1 = new ImageIcon(imagesPath + level + ".png");
+				lblArea.setIcon(a1);
+			}
+		});
 		fBtn.setBounds(716, 123, 47, 29);
 		contentPane.add(fBtn);
 		
@@ -163,21 +170,56 @@ public class hngMan1 extends JFrame {
 		gBtn.setBounds(768, 123, 47, 29);
 		contentPane.add(gBtn);
 		
+		gBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Btn(gBtn);
+				ImageIcon a1 = new ImageIcon(imagesPath + level + ".png");
+				lblArea.setIcon(a1);
+			}
+		});
 		hBtn = new JButton("H");
 		hBtn.setBounds(446, 164, 47, 29);
 		contentPane.add(hBtn);
 		
+		hBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Btn(hBtn);
+				ImageIcon a1 = new ImageIcon(imagesPath + level + ".png");
+				lblArea.setIcon(a1);
+			}
+		});
 		iBtn = new JButton("I");
 		iBtn.setBounds(502, 164, 47, 29);
 		contentPane.add(iBtn);
 		
+		iBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Btn(iBtn);
+				ImageIcon a1 = new ImageIcon(imagesPath + level + ".png");
+				lblArea.setIcon(a1);
+			}
+		});
 		jBtn = new JButton("J");
 		jBtn.setBounds(550, 164, 47, 29);
 		contentPane.add(jBtn);
 		
+		jBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Btn(jBtn);
+				ImageIcon a1 = new ImageIcon(imagesPath + level + ".png");
+				lblArea.setIcon(a1);
+			}
+		});
 		kBtn = new JButton("K");
 		kBtn.setBounds(609, 164, 47, 29);
 		contentPane.add(kBtn);
+		kBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Btn(kBtn);
+				ImageIcon a1 = new ImageIcon(imagesPath + level + ".png");
+				lblArea.setIcon(a1);
+			}
+		});
 		
 		
 		
