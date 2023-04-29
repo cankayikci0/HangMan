@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import java.awt.Font;
+import javax.swing.SwingConstants;
 
 public class hngMan1 extends JFrame {
 	
@@ -23,8 +25,6 @@ public class hngMan1 extends JFrame {
 	
 	
 	private JPanel contentPane;
-	
-	private JTextField guessField;
 	private JButton aBtn;
 	private JButton bBtn;
 	private JButton cBtn;
@@ -42,13 +42,9 @@ public class hngMan1 extends JFrame {
 	 * Launch the application.
 	 */
 	public void Btn(JButton a) {
-		occur.clear();
-		occur = findOccurances(aBtn.getText());
-		replaceString(occur, 'A');
-		
-		boolean flag = occur == null ? false : true;
+		boolean flag = theWord.indexOf(a.getText()) == -1 ? false : true;
 		if(flag) {
-			textArea.setText(guess.toString());
+			textArea.append(a.getText());
 		}
 		level +=  !flag ? 1 : 0;
 		
@@ -108,13 +104,9 @@ public class hngMan1 extends JFrame {
 		});
 		btnNewButton.setBounds(198, 359, 110, 29);
 		contentPane.add(btnNewButton);
-		
-		guessField = new JTextField();
-		guessField.setBounds(510, 55, 240, 29);
-		contentPane.add(guessField);
-		guessField.setColumns(10);
 		textArea = new JTextArea();
-		textArea.setBounds(414, 214, 97, 45);
+		textArea.setFont(new Font("Lucida Grande", Font.PLAIN, 32));
+		textArea.setBounds(446, 261, 210, 45);
 		contentPane.add(textArea);
 		
 		
@@ -124,6 +116,7 @@ public class hngMan1 extends JFrame {
 		
 		aBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Btn(aBtn);
 				occur.clear();
 				occur = findOccurances(aBtn.getText());
 				replaceString(occur, 'A');
@@ -139,7 +132,13 @@ public class hngMan1 extends JFrame {
 		bBtn = new JButton("B");
 		bBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Btn(bBtn);
+				Btn(aBtn);
+				occur.clear();
+				occur = findOccurances(bBtn.getText());
+				replaceString(occur, 'B');
+				textArea.setText(guess.toString());
+				level += occur.isEmpty() ? 1 : 0;
+				bBtn.setEnabled(false);
 				ImageIcon a1 = new ImageIcon(imagesPath + level + ".png");
 				lblArea.setIcon(a1);
 			}
@@ -150,7 +149,13 @@ public class hngMan1 extends JFrame {
 		cBtn = new JButton("C");
 		cBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Btn(cBtn);
+				Btn(aBtn);
+				occur.clear();
+				occur = findOccurances(bBtn.getText());
+				replaceString(occur, 'B');
+				textArea.setText(guess.toString());
+				level += occur.isEmpty() ? 1 : 0;
+				cBtn.setEnabled(false);
 				ImageIcon a1 = new ImageIcon(imagesPath + level + ".png");
 				lblArea.setIcon(a1);
 				
@@ -162,7 +167,13 @@ public class hngMan1 extends JFrame {
 		dBtn = new JButton("D");
 		dBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Btn(dBtn);
+				Btn(aBtn);
+				occur.clear();
+				occur = findOccurances(bBtn.getText());
+				replaceString(occur, 'B');
+				textArea.setText(guess.toString());
+				level += occur.isEmpty() ? 1 : 0;
+				dBtn.setEnabled(false);
 				ImageIcon a1 = new ImageIcon(imagesPath + level + ".png");
 				lblArea.setIcon(a1);
 			}
@@ -173,7 +184,13 @@ public class hngMan1 extends JFrame {
 		eBtn = new JButton("E");
 		eBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Btn(eBtn);
+				Btn(aBtn);
+				occur.clear();
+				occur = findOccurances(eBtn.getText());
+				replaceString(occur, 'E');
+				textArea.setText(guess.toString());
+				level += occur.isEmpty() ? 1 : 0;
+				eBtn.setEnabled(false);
 				ImageIcon a1 = new ImageIcon(imagesPath + level + ".png");
 				lblArea.setIcon(a1);
 			}
@@ -184,7 +201,13 @@ public class hngMan1 extends JFrame {
 		fBtn = new JButton("F");
 		fBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Btn(fBtn);
+				Btn(aBtn);
+				occur.clear();
+				occur = findOccurances(fBtn.getText());
+				replaceString(occur, 'F');
+				textArea.setText(guess.toString());
+				level += occur.isEmpty() ? 1 : 0;
+				fBtn.setEnabled(false);
 				ImageIcon a1 = new ImageIcon(imagesPath + level + ".png");
 				lblArea.setIcon(a1);
 			}
@@ -198,7 +221,12 @@ public class hngMan1 extends JFrame {
 		
 		gBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Btn(gBtn);
+				occur.clear();
+				occur = findOccurances(gBtn.getText());
+				replaceString(occur, 'G');
+				textArea.setText(guess.toString());
+				level += occur.isEmpty() ? 1 : 0;
+				gBtn.setEnabled(false);
 				ImageIcon a1 = new ImageIcon(imagesPath + level + ".png");
 				lblArea.setIcon(a1);
 			}
@@ -209,7 +237,12 @@ public class hngMan1 extends JFrame {
 		
 		hBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Btn(hBtn);
+				occur.clear();
+				occur = findOccurances(hBtn.getText());
+				replaceString(occur, 'H');
+				textArea.setText(guess.toString());
+				level += occur.isEmpty() ? 1 : 0;
+				hBtn.setEnabled(false);
 				ImageIcon a1 = new ImageIcon(imagesPath + level + ".png");
 				lblArea.setIcon(a1);
 			}
@@ -220,7 +253,12 @@ public class hngMan1 extends JFrame {
 		
 		iBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Btn(iBtn);
+				occur.clear();
+				occur = findOccurances(iBtn.getText());
+				replaceString(occur, 'I');
+				textArea.setText(guess.toString());
+				level += occur.isEmpty() ? 1 : 0;
+				iBtn.setEnabled(false);
 				ImageIcon a1 = new ImageIcon(imagesPath + level + ".png");
 				lblArea.setIcon(a1);
 			}
@@ -231,7 +269,12 @@ public class hngMan1 extends JFrame {
 		
 		jBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Btn(jBtn);
+				occur.clear();
+				occur = findOccurances(jBtn.getText());
+				replaceString(occur, 'J');
+				textArea.setText(guess.toString());
+				level += occur.isEmpty() ? 1 : 0;
+				jBtn.setEnabled(false);
 				ImageIcon a1 = new ImageIcon(imagesPath + level + ".png");
 				lblArea.setIcon(a1);
 			}
@@ -239,9 +282,53 @@ public class hngMan1 extends JFrame {
 		kBtn = new JButton("K");
 		kBtn.setBounds(609, 164, 47, 29);
 		contentPane.add(kBtn);
+		
+		JButton nBtn = new JButton("N");
+		nBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				occur.clear();
+				occur = findOccurances(nBtn.getText());
+				replaceString(occur, 'N');
+				textArea.setText(guess.toString());
+				level += occur.isEmpty() ? 1 : 0;
+				nBtn.setEnabled(false);
+				ImageIcon a1 = new ImageIcon(imagesPath + level + ".png");
+				lblArea.setIcon(a1);
+			}
+		});
+		nBtn.setBounds(667, 164, 47, 29);
+		contentPane.add(nBtn);
+		
+		JButton rBtn = new JButton("R");
+		rBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				occur.clear();
+				occur = findOccurances(rBtn.getText());
+				replaceString(occur, 'R');
+				textArea.setText(guess.toString());
+				level += occur.isEmpty() ? 1 : 0;
+				rBtn.setEnabled(false);
+				ImageIcon a1 = new ImageIcon(imagesPath + level + ".png");
+				lblArea.setIcon(a1);
+			}
+		});
+		rBtn.setBounds(726, 164, 47, 29);
+		contentPane.add(rBtn);
+		
+		JLabel lblNewLabel = new JLabel("CAPITAL?");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+		lblNewLabel.setBounds(449, 30, 234, 22);
+		contentPane.add(lblNewLabel);
 		kBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Btn(kBtn);
+				occur.clear();
+				occur = findOccurances(kBtn.getText());
+				replaceString(occur, 'K');
+				textArea.setText(guess.toString());
+				level += occur.isEmpty() ? 1 : 0;
+				kBtn.setEnabled(false);
 				ImageIcon a1 = new ImageIcon(imagesPath + level + ".png");
 				lblArea.setIcon(a1);
 			}
