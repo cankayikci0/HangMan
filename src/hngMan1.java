@@ -8,6 +8,7 @@ import java.awt.Color;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -17,6 +18,8 @@ public class hngMan1 extends JFrame {
 	private static int level = 0;
 	StringBuffer theWord = new StringBuffer("ANKARA");
 	private String imagesPath = "images/";
+	private StringBuffer guess = new StringBuffer("######");
+	private ArrayList<Integer> occur = new ArrayList();
 	
 	
 	private JPanel contentPane;
@@ -39,12 +42,32 @@ public class hngMan1 extends JFrame {
 	 * Launch the application.
 	 */
 	public void Btn(JButton a) {
-		boolean flag = theWord.indexOf(a.getText()) == -1 ? false : true;
+		occur.clear();
+		occur = findOccurances(aBtn.getText());
+		replaceString(occur, 'A');
+		
+		boolean flag = occur == null ? false : true;
 		if(flag) {
-			textArea.append(a.getText());
+			textArea.setText(guess.toString());
 		}
 		level +=  !flag ? 1 : 0;
+		
 		a.setEnabled(false);
+	}
+	public ArrayList<Integer> findOccurances(String character) {
+		ArrayList<Integer> list = new ArrayList();
+		int index = theWord.indexOf(character);
+		while(index >= 0) {
+			list.add(index);
+			index = theWord.indexOf(character, index + 1);
+		}
+		return list;
+	}
+	public void replaceString(ArrayList<Integer> list, char c) {
+		for(int index : list) {
+			guess.setCharAt(index, c);
+		}
+		
 	}
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -83,7 +106,7 @@ public class hngMan1 extends JFrame {
 				lblArea.setIcon(a1);
 			}
 		});
-		btnNewButton.setBounds(198, 359, 117, 29);
+		btnNewButton.setBounds(198, 359, 110, 29);
 		contentPane.add(btnNewButton);
 		
 		guessField = new JTextField();
@@ -95,13 +118,16 @@ public class hngMan1 extends JFrame {
 		contentPane.add(textArea);
 		
 		
+		textArea.setText(guess.toString());
 			
 		aBtn = new JButton("A");
 		
 		aBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				textArea.append(aBtn.getText());
+				occur.clear();
+				occur = findOccurances(aBtn.getText());
+				replaceString(occur, 'A');
+				textArea.setText(guess.toString());
 				level += theWord.indexOf(aBtn.getText()) == -1 ? 1 : 0;
 				aBtn.setEnabled(false);
 			}
@@ -220,6 +246,7 @@ public class hngMan1 extends JFrame {
 				lblArea.setIcon(a1);
 			}
 		});
+		
 		
 		
 		
