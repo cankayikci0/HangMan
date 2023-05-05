@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+import java.awt.SystemColor;
 
 public class hngMan1 extends JFrame {
 	
@@ -37,6 +38,7 @@ public class hngMan1 extends JFrame {
 	private JButton jBtn;
 	private JButton kBtn;
 	private JTextArea textArea;
+	private JLabel congrats;
 
 	/**
 	 * Launch the application.
@@ -50,6 +52,7 @@ public class hngMan1 extends JFrame {
 		
 		a.setEnabled(false);
 	}
+	
 	public ArrayList<Integer> findOccurances(String character) {
 		ArrayList<Integer> list = new ArrayList();
 		int index = theWord.indexOf(character);
@@ -82,6 +85,7 @@ public class hngMan1 extends JFrame {
 	 * Create the frame.
 	 */
 	public hngMan1() {
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 900, 500);
 		contentPane = new JPanel();
@@ -91,19 +95,10 @@ public class hngMan1 extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		JLabel lblArea = new JLabel("");
-		lblArea.setBounds(98, 66, 336, 207);
+		lblArea.setBackground(SystemColor.menu);
+		lblArea.setForeground(Color.WHITE);
+		lblArea.setBounds(98, 67, 336, 207);
 		contentPane.add(lblArea);
-		
-		JButton btnNewButton = new JButton("New button");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				level++;
-				ImageIcon a1 = new ImageIcon(imagesPath + level + ".png");
-				lblArea.setIcon(a1);
-			}
-		});
-		btnNewButton.setBounds(198, 359, 110, 29);
-		contentPane.add(btnNewButton);
 		textArea = new JTextArea();
 		textArea.setFont(new Font("Lucida Grande", Font.PLAIN, 32));
 		textArea.setBounds(446, 261, 210, 45);
@@ -116,7 +111,7 @@ public class hngMan1 extends JFrame {
 		
 		aBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Btn(aBtn);
+				//Btn(aBtn);
 				occur.clear();
 				occur = findOccurances(aBtn.getText());
 				replaceString(occur, 'A');
@@ -132,7 +127,7 @@ public class hngMan1 extends JFrame {
 		bBtn = new JButton("B");
 		bBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Btn(aBtn);
+				//Btn(aBtn);
 				occur.clear();
 				occur = findOccurances(bBtn.getText());
 				replaceString(occur, 'B');
@@ -149,10 +144,10 @@ public class hngMan1 extends JFrame {
 		cBtn = new JButton("C");
 		cBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Btn(aBtn);
+				//Btn(aBtn);
 				occur.clear();
-				occur = findOccurances(bBtn.getText());
-				replaceString(occur, 'B');
+				occur = findOccurances(cBtn.getText());
+				replaceString(occur, 'C');
 				textArea.setText(guess.toString());
 				level += occur.isEmpty() ? 1 : 0;
 				cBtn.setEnabled(false);
@@ -167,10 +162,10 @@ public class hngMan1 extends JFrame {
 		dBtn = new JButton("D");
 		dBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Btn(aBtn);
+				//Btn(dBtn);
 				occur.clear();
-				occur = findOccurances(bBtn.getText());
-				replaceString(occur, 'B');
+				occur = findOccurances(dBtn.getText());
+				replaceString(occur, 'D');
 				textArea.setText(guess.toString());
 				level += occur.isEmpty() ? 1 : 0;
 				dBtn.setEnabled(false);
@@ -184,7 +179,7 @@ public class hngMan1 extends JFrame {
 		eBtn = new JButton("E");
 		eBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Btn(aBtn);
+				//Btn(eBtn);
 				occur.clear();
 				occur = findOccurances(eBtn.getText());
 				replaceString(occur, 'E');
@@ -201,7 +196,7 @@ public class hngMan1 extends JFrame {
 		fBtn = new JButton("F");
 		fBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Btn(aBtn);
+				//Btn(fBtn);
 				occur.clear();
 				occur = findOccurances(fBtn.getText());
 				replaceString(occur, 'F');
@@ -320,9 +315,13 @@ public class hngMan1 extends JFrame {
 		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		lblNewLabel.setBounds(449, 30, 234, 22);
 		contentPane.add(lblNewLabel);
+		
+		congrats = new JLabel("New label");
+		congrats.setBounds(64, 332, 61, 16);
+		contentPane.add(congrats);
 		kBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Btn(kBtn);
+				//Btn(kBtn);
 				occur.clear();
 				occur = findOccurances(kBtn.getText());
 				replaceString(occur, 'K');
@@ -335,7 +334,14 @@ public class hngMan1 extends JFrame {
 		});
 		
 		
-		
+		JButton submitBtn = new JButton("Submit");
+		submitBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				congrats.setText(textArea.getText().equals(theWord.toString()) ? "Congrats" : "Try Again");
+			}
+		});
+		submitBtn.setBounds(64, 286, 117, 29);
+		contentPane.add(submitBtn);
 		
 		
 	}
